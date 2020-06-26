@@ -1,0 +1,82 @@
+## dependencies:
+spring web
+Rest Repository
+Mysql
+Jpa
+lombok	==> auto generation / add it to Ide
+
+## entity : Product
+implemnts Serializable
+@Entity
+@Data 	==>   for lombok getters/setters
+@NoArgsConstructor	==>	  for lombok	for constructor without parameter
+@AllArgsConstructor		==>  for lombok		for constructor with all parameters
+@ToString		==>	  for lombok	 method ToString()
+@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+## Repository
+
+## For test 
+public class YousfiCatalogueServiceApplication implements CommandLineRunner {
+	method run()
+}
+
+## application.properties
+
+## Use spring data rest for web service
+@RepositoryRestResource
+
+url  ==>	http://localhost:8080/products 
+			http://localhost:8080/products/1
+			
+## we can add the methods that are not defined in generic form
+@RestResource(path="/")
+method definition
+
+url 	==>	http://localhost:8080/products/search/byDesignation?motcle=PC
+			http://localhost:8080/products/search/byDesignationPage?motcle=H&page=0&size=2
+			
+## for personalize the responses we use interface projection
+	It has a method called projection() and is applyed on a class 
+	
+url		==>http://localhost:8080/products?projection=P1	
+	
+## for having the id in the response:
+			repositoryRestConfiguration.exposeIdsFor(Product.class);
+	
+## Restcontroller is for the things we cant do  with springDataRest 	
+	here to prevent confusion with the springDataRest use this annotation	=> 		@GetMapping("/listProducts")
+	and for the url we give sth different from the other one which is the default of springDataRest url
+	@RestController
+	
+## SpringDataRest use a specific json format data 	
+	
+	
+## NOTE 
+	that backend is at localhost:8080/... 
+	but the front that we make with Angular is on a different url(localhost:4200/... )
+			http://localhost:8080/listProducts
+			http://localhost:8080/listProducts/1
+	We should let the app to accept all the http requests and for that, we add 
+	@CrossOrigin("*")
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 	
